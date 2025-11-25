@@ -1,0 +1,14 @@
+﻿{
+  "name": "ss-api",
+  "version": "1.0.0",
+  "description": "Milestone 2 API - Stan Smeyers",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.0",
+    "mongoose": "^8.3.0",
+    "cors": "^2.8.5"
+  }
+}

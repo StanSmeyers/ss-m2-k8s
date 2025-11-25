@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ss-m2-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/StanSmeyers/ss-m2-k8s.git'
+    targetRevision: main
+    path: k8s
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: ss-m2
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
