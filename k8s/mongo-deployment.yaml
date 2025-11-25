@@ -1,0 +1,29 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ss-mongo
+  namespace: ss-m2
+  labels:
+    app: ss-mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ss-mongo
+  template:
+    metadata:
+      labels:
+        app: ss-mongo
+    spec:
+      containers:
+        - name: mongo
+          image: mongo:7
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongo-data
+              mountPath: /data/db
+      volumes:
+        - name: mongo-data
+          persistentVolumeClaim:
+            claimName: ss-mongo-pvc

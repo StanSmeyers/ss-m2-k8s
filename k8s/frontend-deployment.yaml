@@ -1,0 +1,23 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ss-frontend
+  namespace: ss-m2
+  labels:
+    app: ss-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ss-frontend
+  template:
+    metadata:
+      labels:
+        app: ss-frontend
+    spec:
+      containers:
+        - name: ss-frontend
+          image: stansmeyers/ss-frontend:1.0.0
+          ports:
+            - containerPort: 80
+              name: http

@@ -1,0 +1,40 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ss-api
+  namespace: ss-m2
+  labels:
+    app: ss-api
+spec:
+  replicas: 2    # scaling
+  selector:
+    matchLabels:
+      app: ss-api
+  template:
+    metadata:
+      labels:
+        app: ss-api
+    spec:
+      containers:
+        - name: ss-api
+          image: stansmeyers/ss-api:1.0.0
+          ports:
+            - containerPort: 3000
+              name: http
+          env:
+            - name: MONGO_URL
+              value: "mongodb://ss-mongo:27017/ssdb"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            failureThreshold: 3
