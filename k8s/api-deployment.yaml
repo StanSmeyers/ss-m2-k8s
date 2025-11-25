@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: ss-api
-          image: stansmeyers/ss-api:1.0.0
+          image: stansmeyers/ss-api:1.0.1
           ports:
             - containerPort: 3000
               name: http
