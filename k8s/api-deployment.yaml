@@ -6,7 +6,7 @@ metadata:
   labels:
     app: ss-api
 spec:
-  replicas: 2    # scaling
+  replicas: 3    # scaling
   selector:
     matchLabels:
       app: ss-api
